@@ -1,215 +1,78 @@
-# 🧹 Dev Cleaner Utility
+<div align="center">
 
-<p align="center">
-    <a href="YOUR_GITHUB_REPO_LINK">
-        <img src="https://img.shields.io/badge/Status-Active-brightgreen" alt="Status">
-    </a>
-    <a href="YOUR_GITHUB_REPO_LINK/stargazers">
-        <img src="https://img.shields.io/github/stars/jemishavasoya/dev-cleaner" alt="GitHub stars">
-    </a>
-</p>
+# Dev Cleaner
 
-<p align="center">
-  <img src="./images/poster_1.0.1.png" alt="poster_1.0.1" style="width:100%; height:auto; style="border-radius: 8px;"/><br>
-</p>
+**One-click interactive shell script to deep-clean development caches on macOS and Linux.**  
+Frees 50 GB+ of storage by clearing Xcode, Flutter, Android, npm, Gradle, Python, and IDE caches.
 
-## Support Latest macOS/Linux/Windows Dev Environments
+<br/>
 
-This tool is for **educational purposes**, focusing on safely removing development-related junk files (Xcode, Flutter, Visual Studio, npm, etc.) to free up disk space.
+[![Shell](https://img.shields.io/badge/Shell-bash-4EAA25?style=flat-square&logo=gnubash&logoColor=white)](https://github.com/BadryansahBangsawan/dev-cleaner)
+[![macOS](https://img.shields.io/badge/macOS-supported-black?style=flat-square&logo=apple)](https://github.com/BadryansahBangsawan/dev-cleaner)
+[![Linux](https://img.shields.io/badge/Linux-supported-FCC624?style=flat-square&logo=linux&logoColor=black)](https://github.com/BadryansahBangsawan/dev-cleaner)
+[![Windows](https://img.shields.io/badge/Windows-PowerShell-0078D4?style=flat-square&logo=powershell&logoColor=white)](https://github.com/BadryansahBangsawan/dev-cleaner)
 
----
+<br/>
 
-### ✨ Features
-
-* **One-Click Cleanup:** Clear Xcode, Flutter, Visual Studio, Gradle, npm, NuGet, IDE, and browser caches.
-* **Comprehensive Flutter Cleanup:** Recursively finds and cleans all Flutter projects, removing:
-  * FVM SDK caches and configurations (`.fvm`, `.fvmrc`)
-  * Flutter build artifacts (`build`, `.dart_tool`, `.packages`, `pubspec.lock`)
-  * Android Gradle caches (`android/.gradle`, `android/build`, `android/app/build`)
-  * iOS CocoaPods caches (`ios/Pods`, `ios/Podfile.lock`, `ios/.symlinks`, Flutter frameworks)
-  * Global Flutter cache
-* **AI CLI Tools:** Prunes the old Claude Code binaries the native installer leaves behind (`~/.local/share/claude/versions`, ~190 MB per release), keeping the version in use.
-* **Interactive Menu:** Allows selection of specific cleanup targets (e.g., Xcode only).
-* **Multi-platform Support:** Supports **macOS**, **Linux**, and **Windows**.
+</div>
 
 ---
 
-### 💻 System Support
+## Install
 
-| Operating System | Architecture | Supported |
-| :--------------- | :----------- | :-------- |
-| macOS            | Intel, Apple Silicon | ✅        |
-| Linux            | x64, ARM64   | ✅        |
-| Windows          | x64, ARM64   | ✅        |
+### macOS and Linux
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/BadryansahBangsawan/dev-cleaner/main/dev-cleaner.sh | bash
+```
+
+Or clone and run manually:
+
+```bash
+git clone https://github.com/BadryansahBangsawan/dev-cleaner.git
+cd dev-cleaner
+bash dev-cleaner.sh
+```
+
+### Windows — PowerShell
+
+```powershell
+irm https://raw.githubusercontent.com/BadryansahBangsawan/dev-cleaner/main/dev-cleaner.ps1 | iex
+```
 
 ---
 
-### 👀 How to Use
+## Features
 
-#### ⭐ Auto Run Script
+| Target | What gets cleaned |
+|---|---|
+| **Xcode** | Derived Data, Archives, Simulators, device symbols |
+| **Flutter / FVM** | Build artifacts, .dart_tool, FVM SDK cache, Pub cache |
+| **Android** | Gradle caches and build directories |
+| **npm / Node** | node_modules, npm / yarn / pnpm cache |
+| **Python** | __pycache__, .pyc files, pip cache, virtualenvs |
+| **IDEs** | JetBrains, VS Code, Android Studio caches |
+| **Claude Code** | Old version binaries left behind by the native installer |
+| **System** | macOS DS_Store files, Trash, log files |
 
-**Linux/macOS**
+- Interactive menu — pick only the targets you want to clean.
+- Dry run mode — see what would be deleted before committing.
+- Multi-platform — same clean interface on macOS, Linux, and Windows (PowerShell).
 
-To download, grant permission, and run the utility in one line:
+---
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/jemishavasoya/dev-cleaner/main/dev-cleaner.sh -o dev-cleanup.sh && chmod +x dev-cleanup.sh && ./dev-cleanup.sh
-```
+## Notes
 
-#### 🍺 Install via Homebrew
+– Run with `bash dev-cleaner.sh` — no install, no dependencies beyond bash.
+– The script always asks for confirmation before deleting anything.
+– Flutter cleanup recurses into nested projects found under your home directory.
+– AI CLI cleanup prunes old Claude Code binaries (~/.local/share/claude/versions), keeping only the currently active version.
+– Windows support is via the separate dev-cleaner.ps1 script.
 
-**macOS/Linux**
+---
 
-For a permanent installation using Homebrew:
+<div align="center">
 
-```bash
-# Tap the repository
-brew tap jemishavasoya/dev-cleaner
+Made with ♥ for developers drowning in gigabytes of cache.
 
-# Install dev-cleaner
-brew install dev-cleaner
-
-# Run the utility
-dev-cleaner
-
-# Check version
-dev-cleaner --version
-```
-
-To update to the latest version:
-
-```bash
-brew update
-brew upgrade dev-cleaner
-```
-
-To uninstall:
-
-```bash
-brew uninstall dev-cleaner
-brew untap jemishavasoya/dev-cleaner
-```
-
-#### 🪟 Windows Installation
-
-**PowerShell (Run as Administrator)**
-
-##### One-Line Download & Run
-
-```powershell
-irm https://raw.githubusercontent.com/jemishavasoya/dev-cleaner/main/dev-cleaner.ps1 -OutFile dev-cleaner.ps1; .\dev-cleaner.ps1
-```
-
-> **Note:** You may need to set the execution policy first:
-> ```powershell
-> Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-> ```
-
-##### Manual Download
-
-1. Download `dev-cleaner.ps1` from this repository
-2. Right-click the file → **Run with PowerShell**, or
-3. Open PowerShell as Administrator and run:
-   ```powershell
-   .\dev-cleaner.ps1
-   ```
-
-##### Command-Line Options
-
-```powershell
-# Show help
-.\dev-cleaner.ps1 -Help
-
-# Show version
-.\dev-cleaner.ps1 -Version
-
-# Custom Flutter projects directory
-.\dev-cleaner.ps1 -FlutterDir "C:\Projects\Flutter"
-
-# Custom Visual Studio projects directory
-.\dev-cleaner.ps1 -VsDir "C:\Projects\DotNet"
-
-# Both custom directories
-.\dev-cleaner.ps1 -FlutterDir "D:\Flutter" -VsDir "D:\VisualStudio"
-```
-
-##### Environment Variables
-
-```powershell
-# Set in your PowerShell profile for persistence
-$env:FLUTTER_SEARCH_DIR = "C:\Projects\Flutter"
-$env:VS_SEARCH_DIR = "C:\Projects\DotNet"
-```
-
-##### Windows-Specific Cleanup
-
-The Windows version includes all cross-platform cleanups plus:
-
-- **Visual Studio:** Cleans `bin/`, `obj/`, `.vs/` folders from all .NET projects, plus global VS caches (ComponentModelCache, MEFCacheData)
-- **NuGet:** Clears global packages cache (`~/.nuget/packages`), HTTP cache, and temp files
-- **Windows Temp:** Clears user and system temp folders, plus Recycle Bin
-
-> **Note:** Some operations require Administrator privileges. The script will automatically request elevation if needed.
-
-#### 🤖 Claude Code Version Cleanup
-
-Claude Code's native installer keeps every version it has ever installed under `~/.local/share/claude/versions/` and never removes the old ones, so weeks of background auto-updates quietly cost several GB. Option 19 (option 12 on Windows) prunes them. Because one of those files is the binary the `claude` command actually runs, this option is deliberately conservative:
-
-- **Always kept:** the version the launcher (`~/.local/bin/claude`) resolves to, and any binary a running session still has open.
-- **Also kept on Windows:** the newest file, since there is no symlink to resolve and an update can land in `versions\` without being copied into `bin\`.
-- **Skipped entirely** — nothing is removed, with a warning — when the launcher is not a symlink into `versions/` (you replaced it with your own script) or points at a version that is no longer on disk. The active version cannot be identified, so nothing is guessed.
-- **Never touched:** `~/.claude/` and `~/.claude.json`. Settings, MCP configuration and session history live there.
-
-#### 🧹 Flutter Cleanup Details
-
-The Flutter cleanup option (Option 4) performs a comprehensive recursive cleanup of all Flutter projects starting from the current directory. It:
-
-- **Recursively searches** for all `pubspec.yaml` files
-- **Removes FVM** SDK caches and configurations
-- **Cleans build artifacts**: `build/`, `.dart_tool/`, `.packages`, `pubspec.lock`
-- **Removes Android Gradle** caches from each project
-- **Removes iOS CocoaPods** caches and Flutter frameworks
-- **Cleans global Flutter cache**
-
-**💡 Pro Tip:** If you have active projects you work on daily, consider running the cleanup from a specific subdirectory (e.g., `~/old_projects` or `~/research`) rather than your entire development folder. This avoids unnecessary rebuilds of dependencies for active projects.
-
-**Expected Space Savings:** Users have reported freeing up 50-100GB+ of disk space after running Flutter cleanup on multiple projects.
-### You can also buy me a cup of coffee &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.buymeacoffee.com/jempatellbv" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Tea" style="height: 60px !important;width: 217px !important;" ></a>
-
-## 🤩 Contribution 
-
-We welcome you to submit Issues and Pull Requests!
-
-<a href="https://github.com/jemishavasoya/dev-cleaner/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=jemishavasoya/dev-cleaner&preview=false&max=&columns=" />
-</a>
-<br /><br />
-
-## Common Issues
-
-### Permission Errors
-- If you encounter permission errors while running scripts, try running with `sudo` (Linux/macOS) or as Administrator (Windows).
-
-### Free Space Did Not Change After Cleanup (macOS)
-
-The summary prints two different things on purpose:
-
-```
-Reclaimed:  ~3.0Gi
-Free space: 21.4Gi → 21.4Gi
-```
-
-**`Reclaimed` is measured on the files that were actually deleted** — that data is gone. **Free space can lag behind**, because APFS keeps the blocks of a deleted file allocated as long as a Time Machine *local snapshot* still references them (Finder calls this "purgeable" space). macOS releases it on its own, usually within 24 hours or as soon as the disk gets tight.
-
-To get the space back right now, run **option 17 (Remove Time Machine Local Snapshots)** — or check what is pinned:
-
-```bash
-tmutil listlocalsnapshots /
-```
-
-Two other cases where free space lags: apps still holding deleted files open (quit Xcode, Simulator, browsers), and Docker — `docker system prune` frees space *inside* Docker's own disk image, and the host only sees it once Docker Desktop compacts that image.
-
-### Tool Not Found
-- Make sure tools like `flutter` or `brew` are installed and added to your system PATH.
-- On macOS/Linux, check PATH with `echo $PATH`.
-- On Windows, check Environment Variables in System Settings.
+</div>

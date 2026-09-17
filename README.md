@@ -68,6 +68,7 @@ irm https://raw.githubusercontent.com/BadryansahBangsawan/dev-cleaner/main/dev-c
 – Flutter cleanup recurses into nested projects found under your home directory.
 – AI CLI cleanup prunes old Claude Code binaries (~/.local/share/claude/versions), keeping only the currently active version.
 – Windows support is via the separate dev-cleaner.ps1 script.
+– First run on a machine with many projects? Select all targets in dry-run first to preview the total size before committing.
 
 ---
 

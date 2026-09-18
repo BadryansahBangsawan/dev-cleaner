@@ -61,6 +61,14 @@ irm https://raw.githubusercontent.com/BadryansahBangsawan/dev-cleaner/main/dev-c
 
 ---
 
+## Requirements
+
+- **bash 3.2+** (ships on macOS; pre-installed on most Linux distros)
+- **zsh** users: run via `bash dev-cleaner.sh`, not `zsh dev-cleaner.sh` — the script uses bash-specific arrays
+- **Windows**: PowerShell 5.1 or PowerShell 7+ for `dev-cleaner.ps1`
+
+---
+
 ## Notes
 
 – Run with `bash dev-cleaner.sh` — no install, no dependencies beyond bash.
